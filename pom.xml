@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!--  ===== Informations du projet =====  -->
+	<groupId>com.kfokam</groupId>
+	<artifactId>todo-api</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<name>todo-api</name>
+	<description>API de Gestion de Tâches (To-Do List) - KFOKAM48</description>
+
+	<!--  ===== Parent Spring Boot =====  -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.0</version>
+		<relativePath/>
+	</parent>
+	<!--  ===== Propriétés =====  -->
+	<properties>
+		<java.version>17</java.version>
+		<springdoc.version>2.3.0</springdoc.version>
+	</properties>
+	<!--  ===== Dépendances =====  -->
+	<dependencies>
+		<!--  Spring Boot Web : pour créer les endpoints REST  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--  Spring Data JPA : pour la persistance des données avec JPA/Hibernate  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!--  Validation : pour valider les données entrantes (@NotBlank, @Size, etc.)  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!--  H2 Database : base de données en mémoire pour le développement  -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--  Lombok : réduit le code boilerplate (@Getter, @Setter, @Builder, etc.)  -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--  SpringDoc OpenAPI (Swagger) : génère automatiquement la doc API  -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+		<!--  Spring Boot Test : pour les tests unitaires et d'intégration  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!--  ===== Plugin de build =====  -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--  Exclure Lombok du JAR final  -->
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
