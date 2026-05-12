@@ -46,7 +46,7 @@ public class SwaggerConfig {
         // Informations de contact
         Contact contact = new Contact();
         contact.setName("KFOKAM48");
-        contact.setEmail("contact@kfokam48.dev");
+        contact.setEmail("kpambahypolite1@gmail.com");
         contact.setUrl("https://github.com/kfokam48");
 
         // Licence du projet
@@ -61,22 +61,17 @@ public class SwaggerConfig {
                 .description("""
                         ## Description
                         API REST développée avec **Spring Boot** permettant de gérer une liste de tâches.
-                        
                         ## Fonctionnalités
                         - ✅ **Créer** une tâche avec titre, description et statut
                         - 📋 **Lire** toutes les tâches avec filtrage par statut
                         - ✏️ **Mettre à jour** le titre, la description ou le statut
                         - 🗑️ **Supprimer** une tâche
-                        
                         ## Statuts possibles
                         | Statut    | Description               |
                         |-----------|---------------------------|
                         | `A_FAIRE`  | Tâche créée, pas commencée |
                         | `EN_COURS` | Tâche en cours d'exécution |
                         | `TERMINE`  | Tâche entièrement terminée |
-                        
-                        ## Stack Technologique
-                        - Java 17 · Spring Boot 3.2 · Spring Data JPA · Lombok · H2
                         """)
                 .contact(contact)
                 .license(licence);

@@ -47,10 +47,6 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    // ============================================================
-    //  POST /api/v1/tasks — Créer une nouvelle tâche
-    // ============================================================
-
     /**
      * Crée une nouvelle tâche.
      *
@@ -75,8 +71,6 @@ public class TaskController {
     })
     public ResponseEntity<ApiResponse<TaskResponseDTO>> creerTache(
             @Valid @RequestBody TaskRequestDTO dto) {
-
-        log.info("POST /api/v1/tasks — Création d'une tâche : '{}'", dto.getTitre());
         TaskResponseDTO tache = taskService.creerTache(dto);
 
         return ResponseEntity
@@ -84,9 +78,6 @@ public class TaskController {
                 .body(ApiResponse.success("Tâche créée avec succès", tache));
     }
 
-    // ============================================================
-    //  GET /api/v1/tasks — Lister toutes les tâches
-    // ============================================================
 
     /**
      * Récupère toutes les tâches, avec filtrage optionnel par statut.
@@ -113,8 +104,6 @@ public class TaskController {
             @Parameter(description = "Filtrer par statut (optionnel)",
                        example     = "A_FAIRE")
             @RequestParam(required = false) TaskStatus statut) {
-
-        log.info("GET /api/v1/tasks — Filtre statut : {}", statut);
         List<TaskResponseDTO> taches = taskService.getToutesTaches(statut);
 
         String message = statut != null
@@ -124,9 +113,6 @@ public class TaskController {
         return ResponseEntity.ok(ApiResponse.success(message, taches));
     }
 
-    // ============================================================
-    //  GET /api/v1/tasks/{id} — Récupérer une tâche par ID
-    // ============================================================
 
     /**
      * Récupère une tâche spécifique par son identifiant.
@@ -152,16 +138,11 @@ public class TaskController {
     public ResponseEntity<ApiResponse<TaskResponseDTO>> getTacheParId(
             @Parameter(description = "Identifiant de la tâche", example = "1", required = true)
             @PathVariable Long id) {
-
-        log.info("GET /api/v1/tasks/{} — Récupération de la tâche", id);
         TaskResponseDTO tache = taskService.getTacheParId(id);
 
         return ResponseEntity.ok(ApiResponse.success("Tâche trouvée", tache));
     }
 
-    // ============================================================
-    //  PUT /api/v1/tasks/{id} — Mettre à jour une tâche
-    // ============================================================
 
     /**
      * Met à jour une tâche existante.
@@ -193,16 +174,10 @@ public class TaskController {
             @Parameter(description = "Identifiant de la tâche", example = "1", required = true)
             @PathVariable Long id,
             @Valid @RequestBody TaskRequestDTO dto) {
-
-        log.info("PUT /api/v1/tasks/{} — Mise à jour de la tâche", id);
         TaskResponseDTO tache = taskService.mettreAJourTache(id, dto);
 
         return ResponseEntity.ok(ApiResponse.success("Tâche mise à jour avec succès", tache));
     }
-
-    // ============================================================
-    //  DELETE /api/v1/tasks/{id} — Supprimer une tâche
-    // ============================================================
 
     /**
      * Supprime définitivement une tâche.

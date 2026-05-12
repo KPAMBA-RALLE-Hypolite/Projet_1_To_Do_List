@@ -39,8 +39,6 @@ public class DataInitializer {
         return args -> {
             // N'insérer les données que si la BDD est vide
             if (taskRepository.count() == 0) {
-                log.info("Initialisation des données de démonstration...");
-
                 taskRepository.save(Task.builder()
                         .titre("Configurer l'environnement de développement")
                         .description("Installer Java 17, Maven, IntelliJ IDEA et configurer le projet Spring Boot")
@@ -70,8 +68,6 @@ public class DataInitializer {
                         .description("Packager le JAR et déployer sur le serveur avec Docker ou directement")
                         .statut(TaskStatus.A_FAIRE)
                         .build());
-
-                log.info("{} tâches de démonstration insérées.", taskRepository.count());
             }
         };
     }
